@@ -12,9 +12,12 @@ repositories {
 dependencies {
     testImplementation( 'org.junit.jupiter:junit-jupiter:5.10.0',
                         'com.codeborne:selenide:7.0.1',
-                        'com.codeborne:pdf-test:1.0.1',
-                        'commons-io:commons-io:2.15.0'
-                        )
+                        'commons-io:commons-io:2.15.0',
+                        'com.codeborne:pdf-test:1.8.0')
+    testImplementation('com.codeborne:xls-test:1.4.3')
+    testImplementation('com.opencsv:opencsv:5.9')
+
+
 }
 
 test {
