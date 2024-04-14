@@ -1,0 +1,15 @@
+{
+  "mark": "Toyota",
+  "model": "Corolla",
+  "year": 2020,
+  "colors": [
+    "red",
+    "blue",
+    "white"
+  ],
+  "features": {
+    "sunroof": true,
+    "navigation": true,
+    "leather seats": false
+  }
+}
