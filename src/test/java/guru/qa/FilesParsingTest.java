@@ -2,15 +2,15 @@ package guru.qa;
 
 import com.codeborne.pdftest.PDF;
 import com.codeborne.xlstest.XLS;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.opencsv.CSVReader;
+import guru.qa.model.Glossary;
 import net.bytebuddy.asm.Advice;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -22,6 +22,7 @@ import static javax.print.DocFlavor.INPUT_STREAM.PDF;
 public class FilesParsingTest {
 
     private ClassLoader cl = FilesParsingTest.class.getClassLoader();
+    private static final Gson gson = new Gson();
     @Test
     void pdfFilesParsingTest() throws Exception{
         open("https://junit.org/junit5/docs/current/user-guide/");
@@ -63,12 +64,50 @@ public class FilesParsingTest {
 
     @Test
     void zipFileParsingTest() throws Exception {
-        try (InputStream is = cl.getResourceAsStream("example.zip");
-             ZipInputStream zis = new ZipInputStream(is)){
+        try (ZipInputStream zis = new ZipInputStream(
+                cl.getResourceAsStream("example.zip")
+             )) {
             ZipEntry entry;
+
+            while ((entry = zis.getNextEntry()) != null){
+                System.out.println(entry.getName());
+            }
         }
 
 
     }
+
+    @Test
+    void jsonFileParsingTest() throws Exception {
+        try (Reader reader = new InputStreamReader(
+                cl.getResourceAsStream("glossary.json")
+        )) {
+           JsonObject actual = gson.fromJson(reader, JsonObject.class);
+
+           Assertions.assertEquals("example glossary",actual.get("title").getAsString());
+           Assertions.assertEquals(345, actual.get("ID").getAsInt());
+
+           JsonObject inner = actual.get("glossary.json").getAsJsonObject();
+           Assertions.assertEquals("SGML", inner.get("SortAs").getAsString());
+           Assertions.assertEquals("SGML", inner.get("Acronym").getAsString());
+
+        }
+    }
+
+    @Test
+    void jsonFileParsingImprovedTest() throws Exception {
+        try (Reader reader = new InputStreamReader(
+                cl.getResourceAsStream("glossary.json")
+        )) {
+            Glossary actual = gson.fromJson(reader, Glossary.class);
+
+            Assertions.assertEquals("example glossary",actual.getTitle());
+            Assertions.assertEquals(345, actual.getId());
+            Assertions.assertEquals("SGML", actual.getGlossary().getSortAs());
+            Assertions.assertEquals("SGML", actual.getGlossary().getAcronym());
+
+        }
+    }
+
 
 }
