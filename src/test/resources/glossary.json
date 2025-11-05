@@ -5,5 +5,15 @@
     "SortAs": "SGML",
     "GlossTerm": "Standard Generalized Markup Language",
     "Acronym": "SGML"
-  }
+  },
+  "glossaryOptions": [
+    {
+    "term": "SG",
+    "definition": "Standard"
+    },
+    {
+      "term": "ML",
+      "definition": "Language"
+    }
+  ]
 }
