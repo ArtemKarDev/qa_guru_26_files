@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group 'org.example'
+group 'guru.qa'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -13,14 +13,14 @@ dependencies {
     testImplementation( 'org.junit.jupiter:junit-jupiter:5.10.0',
                         'com.codeborne:selenide:7.0.1',
                         'commons-io:commons-io:2.15.0',
-                        'com.codeborne:pdf-test:1.8.0')
-    testImplementation('com.codeborne:xls-test:1.4.3')
-    testImplementation('com.opencsv:opencsv:5.9')
-    testImplementation('com.google.code.gson:gson:2.10.1')
-    testImplementation ('com.fasterxml.jackson.core:jackson-core:2.17.0')
-    testImplementation ('com.fasterxml.jackson.core:jackson-annotations:2.17.0')
-    testImplementation ('com.fasterxml.jackson.core:jackson-databind:2.17.0')
-    testImplementation ('org.assertj:assertj-core:3.21.0')
+                        'com.codeborne:pdf-test:1.8.0',
+                        'com.codeborne:xls-test:1.4.3',
+                        'com.opencsv:opencsv:5.9',
+                        'com.google.code.gson:gson:2.10.1',
+                        'com.fasterxml.jackson.core:jackson-core:2.17.0',
+                        'com.fasterxml.jackson.core:jackson-annotations:2.17.0',
+                        'com.fasterxml.jackson.core:jackson-databind:2.17.0',
+                        'org.assertj:assertj-core:3.21.0')
 
 
 }

@@ -1,7 +1,5 @@
 package guru.qa;
 
-import com.google.common.base.Utf8;
-import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
